@@ -3,20 +3,6 @@ spl_autoload_register(function ($class_name) {
     include $class_name . '.php';
 });
 
-//namespace farm;
-
-/*require 'Animal.php';
-require 'Chicken.php';
-require 'Cow.php';
-require 'Farm.php';
-
-use Animal;
-use Chicken;
-use Cow;
-use Farm;*/
-
-
-
 $numberCow = 10;
 $numberChicken = 20;
 
