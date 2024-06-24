@@ -2,7 +2,6 @@ package farm
 
 import (
 	"farm/animals"
-	"fmt"
 )
 
 type Farm struct {
@@ -29,7 +28,7 @@ func (farm *Farm) CreateAnimal(animalName string) animals.Animal {
 		obj := (*animals.Cow).Init(new(animals.Cow))
 		resp := &obj
 		return resp
-	} else if animalName == "chicken" {
+	} else if animalName == "chickens" {
 		obj := (*animals.Chicken).Init(new(animals.Chicken))
 		resp := &obj
 		return resp
@@ -42,9 +41,15 @@ func (farm *Farm) CreateAnimal(animalName string) animals.Animal {
 
 func (farm *Farm) GetProduction() {
 	for i := 0; i <= 6; i++ {
-		for _, typeAnimal := range farm.Animals {
-			for _, animal := range typeAnimal {
-				fmt.Println(animal.GetOutputProduct())
+		for breed, animals := range farm.Animals {
+			for _, animal := range animals {
+				production := "production"
+				if breed == "cows" {
+					production = "milk"
+				} else if breed == "chickens" {
+					production = "eggs"
+				}
+				farm.ProductionPerWeek[production] += animal.GetOutputProduct()
 			}
 		}
 	}
