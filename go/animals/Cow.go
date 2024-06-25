@@ -12,6 +12,8 @@ func (cow *Cow) Init() Cow {
 		Product:     "milk",
 	}
 }
+
+// Returns a random amount of products.
 func (cow *Cow) GetOutputProduct() int {
 	return rand.Intn(5) + 8
 }

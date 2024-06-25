@@ -7,10 +7,19 @@ import (
 
 func main() {
 	farm := new(farm.Farm)
-	farm1 := farm.Init()
-	farm1.AddAnimal("cows", 5)
-	farm1.AddAnimal("chickens", 10)
-	//fmt.Println(farm1.Animals)
-	farm1.GetProduction()
-	fmt.Println(farm1.ProductionPerWeek)
+	farm = farm.Init()
+
+	farm.AddAnimal("cows", 10)
+	farm.AddAnimal("chickens", 20)
+
+	farm.GetProduction()
+	farm.GetCountAnimals()
+
+	fmt.Println("Went to the market, bought animals")
+
+	farm.AddAnimal("cows", 1)
+	farm.AddAnimal("chickens", 5)
+
+	farm.GetProduction()
+	farm.GetCountAnimals()
 }

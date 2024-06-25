@@ -2,6 +2,9 @@ package farm
 
 import (
 	"farm/animals"
+	"fmt"
+
+	"golang.org/x/exp/maps"
 )
 
 type Farm struct {
@@ -9,6 +12,7 @@ type Farm struct {
 	ProductionPerWeek map[string]int
 }
 
+// Initializes Farm instance fields with zero values.
 func (farm *Farm) Init() *Farm {
 	return &Farm{
 		Animals:           make(map[string][]animals.Animal),
@@ -16,6 +20,7 @@ func (farm *Farm) Init() *Farm {
 	}
 }
 
+// Adds an Animal instance to a Farm instance.
 func (farm *Farm) AddAnimal(animalName string, number int) {
 	for i := 0; i < number; i++ {
 		animalInstance := farm.CreateAnimal(animalName)
@@ -23,22 +28,25 @@ func (farm *Farm) AddAnimal(animalName string, number int) {
 	}
 }
 
+// Creates an Animal instance.
 func (farm *Farm) CreateAnimal(animalName string) animals.Animal {
-	if animalName == "cow" {
+	switch animalName {
+	case "cow":
 		obj := (*animals.Cow).Init(new(animals.Cow))
 		resp := &obj
 		return resp
-	} else if animalName == "chickens" {
+	case "chickens":
 		obj := (*animals.Chicken).Init(new(animals.Chicken))
 		resp := &obj
 		return resp
-	} else {
+	default:
 		obj := (*animals.Cow).Init(new(animals.Cow))
 		resp := &obj
 		return resp
 	}
 }
 
+// Receives products from the animals available on the Farm within 7 days.
 func (farm *Farm) GetProduction() {
 	for i := 0; i <= 6; i++ {
 		for breed, animals := range farm.Animals {
@@ -52,5 +60,16 @@ func (farm *Farm) GetProduction() {
 				farm.ProductionPerWeek[production] += animal.GetOutputProduct()
 			}
 		}
+	}
+	for production, quantity := range farm.ProductionPerWeek {
+		fmt.Println(production, "collected", quantity)
+	}
+}
+
+// Displays in the console the number of animals in the Farm by type.
+func (farm *Farm) GetCountAnimals() {
+	typesAnimals := maps.Keys(farm.Animals)
+	for _, animalType := range typesAnimals {
+		fmt.Println("Count", animalType, len(farm.Animals[animalType]))
 	}
 }

@@ -12,6 +12,8 @@ func (chicken *Chicken) Init() Chicken {
 		Product: "eggs",
 	}
 }
+
+// Returns a random amount of products.
 func (chicken *Chicken) GetOutputProduct() int {
 	return rand.Intn(2)
 }
