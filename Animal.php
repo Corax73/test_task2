@@ -7,5 +7,5 @@ abstract class Animal
 {
     static $id = 0;
     public $animalId;
-    public abstract function getOutputProduct();
+    public abstract function getOutputProduct(): int;
 }

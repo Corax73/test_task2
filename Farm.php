@@ -4,7 +4,7 @@ class Farm
     public $animals;
     public $productionPerWeek = [];
 
-    public function addAnimal($nameClassAnimal, $number)
+    public function addAnimal(string $nameClassAnimal, int $number): void
     {
         for ($i = 0; $i < $number; $i++) {
             $typeAnimal = $this->createAnimal($nameClassAnimal)->animalBreed;
@@ -17,14 +17,14 @@ class Farm
         }
     }
 
-    public function createAnimal($nameClassAnimal)
+    public function createAnimal(string $nameClassAnimal): Animal
     {
         if (class_exists($nameClassAnimal)) {
             return new $nameClassAnimal;
         }
     }
 
-    public function getProduction()
+    public function getProduction(): void
     {
         $this->productionPerWeek = [];
         for ($i = 0; $i <= 6; $i++) {
@@ -46,7 +46,7 @@ class Farm
         }
     }
 
-    public function getCountAnimals()
+    public function getCountAnimals(): void
     {
         $typeAnimals = array_keys($this->animals);
         foreach ($typeAnimals as $typeAnimal) {

@@ -14,7 +14,7 @@ class Chicken extends Animal
         $this->animalId = parent::$id++;
     }
 
-    public function getOutputProduct()
+    public function getOutputProduct(): int
     {
         return rand(0, 1);
     }

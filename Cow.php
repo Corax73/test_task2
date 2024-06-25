@@ -5,7 +5,6 @@ spl_autoload_register(function ($class_name) {
 
 class Cow extends Animal
 {
-
     public $animalId;
     public $animalBreed = 'cows';
     public $product = 'milk';
@@ -15,7 +14,7 @@ class Cow extends Animal
         $this->animalId = parent::$id++;
     }
 
-    public function getOutputProduct()
+    public function getOutputProduct(): int
     {
         return rand(8, 12);
     }
